@@ -1,0 +1,17 @@
+import datetime as dt
+
+def transform_date(date, date_type):
+    if type(date) == str:  # 如果输入是字符串
+        str_date = date  # 字符串格式的日期
+        dt_date = dt.datetime.strptime(date, '%Y-%m-%d')  # 转换为 datetime 对象
+        d_date = dt_date.date()  # 转换为 date 对象
+    elif type(date) == dt.datetime:  # 如果输入是 datetime 对象
+        str_date = date.strftime('%Y-%m-%d')  # 转换为字符串格式
+        dt_date = date  # datetime 对象保持不变
+        d_date = dt_date.date()  # 转换为 date 对象
+    elif type(date) == dt.date:  # 如果输入是 date 对象
+        str_date = date.strftime('%Y-%m-%d')  # 转换为字符串格式
+        dt_date = dt.datetime.strptime(str_date, '%Y-%m-%d')  # 转换为 datetime 对象
+        d_date = date  # date 对象保持不变
+    dct = {'str': str_date, 'dt': dt_date, 'd': d_date}  # 创建一个字典，存储不同格式的日期
+    return dct[date_type]  # 根据目标类型返回相应的日期格式
