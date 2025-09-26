@@ -11,4 +11,9 @@ def initialize(context):
   open：正好在 09:30 市场开盘时执行。
   after_close：当天收盘后，15:10 左右执行，适合做总结、记录、日志、复盘等#
 def before_market_open(context):
+  log.info('函数运行时间（before_market_open)'+str(context.current_dt.time()))
+  g.security='000001.XSHE'
+def market_open(context):
+  log.info('函数运行时间（before_market_open)'+str(context.current_dt.time()))
+  
   
