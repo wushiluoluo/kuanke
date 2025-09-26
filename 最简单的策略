@@ -3,7 +3,12 @@ def initialize(context):
   set_benchmark('000300.XSHG')
   set_option('use_real_price',True)
   log.info('初始化函数每日只运行一次')
-  set_order_cost(OrderCost(close_tax=0.001,close_commission=0.0003,open_commission=0.0003,min_commission=5),Type='stock')
-  run_daily(before_market_open,time='before_open',reference_security='000300.XSHG')#聚宽api中未找到'before_open'的具体指代时间
+  set_order_cost(OrderCost(close_tax=0.001,close_commission=0.0003,open_commission=0.0003,min_commission=5),type='stock')
+  run_daily(before_market_open,time='before_open',reference_security='000300.XSHG')
   run_daily(market_open,time='open',reference_security='000300.XSHG')
   run_daily(after_market_close,time='after_close',reference_security='000300.XSHG')
+  #before_open：即每日开盘前，通常是 09:00 左右执行。主要用于准备工作，比如当天的数据预处理、下单计划等。
+  open：正好在 09:30 市场开盘时执行。
+  after_close：当天收盘后，15:10 左右执行，适合做总结、记录、日志、复盘等#
+def before_market_open(context):
+  
